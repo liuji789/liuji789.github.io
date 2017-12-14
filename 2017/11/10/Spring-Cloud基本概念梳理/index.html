@@ -1,0 +1,560 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable"  content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <!--SEO-->
+
+    <meta name="keywords" content="Spring Cloud," />
+
+
+    <meta name="description" content="Spring Cloud的基本概念官网文档：https://projects.spring.io/spring-cloud基于Spring Boot构建，快速构建分布式系统
+使用问题总结
+Maven构建时，Spring Boot应用不需要启动类配置
+12345678910111213&lt;b..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>Spring Cloud基本概念梳理 | just do IT</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="just do IT" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+    <link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css?rev=9.12.0">
+
+
+<link rel="stylesheet" href="/css/third-party/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+    <div class="hide">
+    <script src="https://s22.cnzz.com/z_stat.php?id=1267495203&web_id=1267495203" 
+	language="JavaScript"></script>
+    </div>
+
+
+
+    
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation"><a href="/"><i class="fa fa-fw fa-home"></i>Java Development | 刘吉</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories"><i class="fa fa-fw fa-list"></i>分类</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/about"><i class="fa fa-fw fa-user"></i>关于</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/archives"><i class="fa fa-fw fa-archive"></i>归档</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/tags"><i class="fa fa-fw fa-tag"></i>标签</a>
+                            </li>
+                        
+                             
+                             
+                             <li role="presentation"><a href="javascript:;" class="popup-trigger"><i class="fa fa-fw fa-search"></i>搜索</a></li>
+                             
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="site-search">
+        <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">关闭</span>
+</div>
+    </div>
+    
+</nav>
+
+
+<a href="http://github.com/liuji789">
+    <img style="position: absolute; top: 0; right: 0; border: 0;"
+        src="/img/forkme.png"
+        alt="Fork me on GitHub">
+</a>
+
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Spring Cloud基本概念梳理">
+            
+            Spring Cloud基本概念梳理
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>Spring Cloud</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Spring Cloud
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2017/11/10</span>
+    </span>
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body">
+        <h1 id="Spring-Cloud的基本概念"><a href="#Spring-Cloud的基本概念" class="headerlink" title="Spring Cloud的基本概念"></a>Spring Cloud的基本概念</h1><p>官网文档：<a href="https://projects.spring.io/spring-cloud" target="_blank" rel="external">https://projects.spring.io/spring-cloud</a><br>基于Spring Boot构建，快速构建分布式系统</p>
+<h2 id="使用问题总结"><a href="#使用问题总结" class="headerlink" title="使用问题总结"></a>使用问题总结</h2><ul>
+<li><p>Maven构建时，Spring Boot应用不需要启动类配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;build&gt;</div><div class="line">    &lt;pluginManagement&gt;</div><div class="line">        &lt;plugins&gt;</div><div class="line">            &lt;plugin&gt;</div><div class="line">                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</div><div class="line">                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</div><div class="line">                &lt;configuration&gt;</div><div class="line">                    &lt;skip&gt;true&lt;/skip&gt;</div><div class="line">                &lt;/configuration&gt;</div><div class="line">            &lt;/plugin&gt;</div><div class="line">        &lt;/plugins&gt;</div><div class="line">    &lt;/pluginManagement&gt;</div><div class="line">&lt;/build&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Spring Boot的启动类默认扫描本包及其子包，不想被ComponentScan扫描</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">主启动类：@ComponentScan(excludeFilters = &#123;@ComponentScan.Filter(type = FilterType.ANNOTATION,value = Exclude.class)&#125;)</div><div class="line">不想被扫描的组件：@Exclude</div><div class="line">public @interface Exclude&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Eureka：微服务注册与发现"><a href="#Eureka：微服务注册与发现" class="headerlink" title="Eureka：微服务注册与发现"></a>Eureka：微服务注册与发现</h2><ul>
+<li>包含两个组件，Eureka Server和EurekaClient，Server提供服务发现的能力，各个微服务启动时注册自己的信息，Server存储这些信息</li>
+<li>Client端是一个Java客户端，简化与Server端的交互</li>
+<li>微服务启动后会周期性（默认是30秒）的向Server发送自己的心跳续约自己的”租期”</li>
+<li>Server一段时间内没有接收到微服务的实例的心跳，Server会注销该实例</li>
+<li>默认情况下，Server同时也是Client，多个Server实例互相之间通过复制的方式，实现服务注册表中数据的同步</li>
+<li>Client端会缓存服务注册表的信息</li>
+<li>Server提供了一些REST端点，非JVM的微服务可以使用这些REST端点，从而实现注册与发现</li>
+<li>整个（Spring-boot-starter）-actuator，-security，官方文档有介绍</li>
+</ul>
+<h2 id="Ribbon：客户端负载均衡"><a href="#Ribbon：客户端负载均衡" class="headerlink" title="Ribbon：客户端负载均衡"></a>Ribbon：客户端负载均衡</h2><ul>
+<li>默认eureka中引入了，为RestTemplate这个Bean增加LoadBalance即可</li>
+<li>Java代码自定义Ribbon配置，使用@RibbonClient指定configuration时，定义某一个时Ribbon客户端的配置时，不用被@ComponentScan扫描</li>
+<li>属性自定义Ribbon配置，修改application.property，具体使用参考官方文档</li>
+<li>脱离Eureka使用Ribbon，配置ribbon的listOfServer</li>
+</ul>
+<h2 id="Fegin：声明式REST调用"><a href="#Fegin：声明式REST调用" class="headerlink" title="Fegin：声明式REST调用"></a>Fegin：声明式REST调用</h2><ul>
+<li>避免拼接URL的方式传递参数，同时实现客户端的负载均衡</li>
+<li>一些issue，①不支持@GetMapping等组合注解，②@PathVariable不能省略，需要设置value，③复杂对象Feign只支持POST方式，使用Map或者单个属性传参</li>
+<li>第一次请求超时，原因：Hystrix默认的超时时间是1秒，解决方式<ul>
+<li>设置超时时间更长：hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 5000</li>
+<li>禁用Hystrix超时时间：hystrix.command.default.execution.timeout.enabled: false</li>
+<li>禁用Feign的Hystrix：feign.hystrix.enabled: false</li>
+</ul>
+</li>
+<li>支持继承能简化Feign的开发，也支持压缩</li>
+</ul>
+<h2 id="Hystric：微服务容错处理"><a href="#Hystric：微服务容错处理" class="headerlink" title="Hystric：微服务容错处理"></a>Hystric：微服务容错处理</h2><ul>
+<li>整合Actuator，访问health可以查看断路器状态，执行回退逻辑不一定是断路器打开，请求失败，超时，被拒绝以及断路器打开时都会执行回退逻辑</li>
+<li>隔离策略①线程隔离（THREAD）:HystrixCommand将在单独的线程上执行，并发请求受线程池中的线程数量限制②信号量隔离（SEMAPHORE）：HystrixCommand在调用线程上执行，开销较小，并发请求受信号量个数限制</li>
+<li>正常使用结合Feign，实现Feign接口，FeginClient指定fallback类</li>
+<li>Turbine监控可以结合消息中间件Stream，一般结合Boot Admin模块一起使用</li>
+</ul>
+<h2 id="使用Zuul：构建微服务网关"><a href="#使用Zuul：构建微服务网关" class="headerlink" title="使用Zuul：构建微服务网关"></a>使用Zuul：构建微服务网关</h2><ul>
+<li>Zuul的核心是一系列的过滤器，启动配合Actutor，路径routes可以查看路由情况</li>
+</ul>
+
+    </div>
+
+    <div class="post-footer">
+        <div class="col-sm-10">
+            <div>
+                <b>本文链接</b>：<a href="/2017/11/10/Spring-Cloud基本概念梳理/">Spring Cloud基本概念梳理</a>
+            </div>
+            <div>
+                
+                    <b>转载声明</b>：本博客由刘吉创作，采用 <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank"> CC BY 3.0 CN </a> 许可协议。可自由转载、引用，但需署名作者且注明文章出处。如转载至微信公众号，请在文末添加作者公众号二维码。
+                
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <img src="/icons/wx.jpg" width=100% />
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2017/12/12/IDEA创建spring-boot支持jsp/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+    
+    
+        <a href="/2017/10/19/IDEA使用总结/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
+
+
+    <div id="comments">
+        
+    <script type="text/javascript" src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+        id: window.location.pathname,
+        owner:"liuji789",
+        repo:"liuji789.github.io",
+        oauth: {
+          client_id:"a2e7f71c376887711893",
+          client_secret:"7675652bc6db8f163d5189e470f5ade692749b5a"
+        },
+        perPage:"10",
+    });
+    gitment.render('comments');
+    </script>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget notification">
+        <h3 class="title">公告</h3>
+        <div>
+            <p>
+  <b>笔者邮箱</b>：583115762@qq.com，欢迎联系<br/>
+  <b>公众号</b>：请扫描我的头像<br/>
+  <b>提示：</b>其实，真正有质量的博客不太多，不如先看看官网文档和github的issue?<br/>
+  <b>本站主题</b>：<a href="http://github.com/itmuch/hexo-theme-itmuch">下载</a>
+</p>
+        </div>
+    </div>
+
+        
+        
+        <div class="widget">
+            <div class="about-me">
+                <img src="/icons/wx.jpg" alt="just do IT">
+                <h2>刘吉</h2>
+                <p>《Think In Java》《Effactive Java》的 阅读者<br/></p>
+            </div>
+        </div>
+
+
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/liuji789" rel="external nofollow" title="GitHub" target="_blank">
+			    	<i class="github fa fa-github"></i>
+			    </a>
+            
+	            <a href="//gitee.com/liuji01" rel="external nofollow" title="Git@OSC" target="_blank">
+			    	<i class="git fa fa-git"></i>
+			    </a>
+            
+	            <a href="mailto:583115762@qq.com" rel="external nofollow" title="邮箱" target="_blank">
+			    	<i class="envelope-o fa fa-envelope-o"></i>
+			    </a>
+            
+	            <a href="/atom.xml" rel="external nofollow" title="RSS" target="_blank">
+			    	<i class="feed fa fa-feed"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/"><i class="fa" aria-hidden="true">Spring Boot</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Cloud/"><i class="fa" aria-hidden="true">Spring Cloud</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">2</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/"><i class="fa" aria-hidden="true">十二月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/"><i class="fa" aria-hidden="true">十一月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/"><i class="fa" aria-hidden="true">十月 2017</i></a><span class="archive-list-count">3</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/Spring-Boot/" style="font-size: 10px;">Spring Boot</a> <a href="/tags/Spring-Cloud/" style="font-size: 20px;">Spring Cloud</a> <a href="/tags/工具/" style="font-size: 20px;">工具</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友情链接</h3>
+        <div class="content friends-link">
+        
+            <a href="http://www.itmuch.com/" class="fa" target="_blank">Spring Cloud</a>
+        
+            <a href="https://www.feel88.cn/" class="fa" target="_blank">大数据</a>
+        
+            <a href="http://blog.didispace.com/" class="fa" target="_blank">程序猿DD|翟永超</a>
+        
+            <a href="http://www.bysocket.com/" class="fa" target="_blank">泥瓦匠的博客</a>
+        
+            <a href="https://pfanz.github.io/" class="fa" target="_blank">寝室长的博客</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2016
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/itmuch/hexo-theme-itmuch.git" class="copyright-links" target="_blank" rel="nofollow">ITMuch</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <script src="/assets/highlight.pack.js?rev=@@hash"></script>
+  <script>
+    hljs.initHighlightingOnLoad(); //初始化代码高亮 
+  </script>
+
+<script src="/js/app.js?rev=@@hash"></script>
+<script src="/lib/jquery/index.js?rev=2.1.3"></script>
+
+    
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    var $doc = window.document;
+    var $input1 =$doc.getElementById("local-search-input");
+    var $resultContent1 = $doc.getElementById('local-search-result');
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('body');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input =document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+          //  var $input =$input1;
+            //var $resultContent = $resultContent1;
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+</body>
+</html>

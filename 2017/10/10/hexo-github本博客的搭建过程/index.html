@@ -1,0 +1,522 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable"  content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <!--SEO-->
+
+    <meta name="keywords" content="工具," />
+
+
+    <meta name="description" content="hexo+github本博客的搭建过程二话不说就是官网文档：https://hexo.io/zh-cn/docs/ 有中文版，哈哈个人感觉的Maven的生命周期和插件有点像nodejs淘宝的nmp镜像：https://npm.taobao.org/或者直接：npm config set reg..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>hexo+github本博客的搭建过程 | just do IT</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="just do IT" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+    <link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css?rev=9.12.0">
+
+
+<link rel="stylesheet" href="/css/third-party/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+    <div class="hide">
+    <script src="https://s22.cnzz.com/z_stat.php?id=1267495203&web_id=1267495203" 
+	language="JavaScript"></script>
+    </div>
+
+
+
+    
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation"><a href="/"><i class="fa fa-fw fa-home"></i>Java Development | 刘吉</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories"><i class="fa fa-fw fa-list"></i>分类</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/about"><i class="fa fa-fw fa-user"></i>关于</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/archives"><i class="fa fa-fw fa-archive"></i>归档</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/tags"><i class="fa fa-fw fa-tag"></i>标签</a>
+                            </li>
+                        
+                             
+                             
+                             <li role="presentation"><a href="javascript:;" class="popup-trigger"><i class="fa fa-fw fa-search"></i>搜索</a></li>
+                             
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="site-search">
+        <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">关闭</span>
+</div>
+    </div>
+    
+</nav>
+
+
+<a href="http://github.com/liuji789">
+    <img style="position: absolute; top: 0; right: 0; border: 0;"
+        src="/img/forkme.png"
+        alt="Fork me on GitHub">
+</a>
+
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="hexo+github本博客的搭建过程">
+            
+            hexo+github本博客的搭建过程
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>工具</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            工具
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2017/10/10</span>
+    </span>
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body">
+        <h1 id="hexo-github本博客的搭建过程"><a href="#hexo-github本博客的搭建过程" class="headerlink" title="hexo+github本博客的搭建过程"></a>hexo+github本博客的搭建过程</h1><p>二话不说就是官网文档：<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">https://hexo.io/zh-cn/docs/</a> 有中文版，哈哈<br>个人感觉的Maven的生命周期和插件有点像<br>nodejs淘宝的nmp镜像：<a href="https://npm.taobao.org/" target="_blank" rel="external">https://npm.taobao.org/</a><br>或者直接：npm config set registry <a href="https://registry.npm.taobao.org/" target="_blank" rel="external">https://registry.npm.taobao.org/</a> </p>
+<h2 id="基本搭建"><a href="#基本搭建" class="headerlink" title="基本搭建"></a>基本搭建</h2><p>①：配好自己的github<br>②：创建一个自己username相同的仓库<br>③：官网的git方式部署：<a href="https://hexo.io/zh-cn/docs/deployment.html" target="_blank" rel="external">https://hexo.io/zh-cn/docs/deployment.html</a></p>
+<h2 id="目录梳理"><a href="#目录梳理" class="headerlink" title="目录梳理"></a>目录梳理</h2><p><img src="/2017/10/10/hexo-github本博客的搭建过程/1.jpg" alt="目录梳理"></p>
+<h2 id="导航栏使用"><a href="#导航栏使用" class="headerlink" title="导航栏使用"></a>导航栏使用</h2><p>分类，关于，标签等使用方式相同<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo new page &quot;categories&quot;</div><div class="line">hexo new page &quot;tags&quot;</div><div class="line">hexo new page &quot;about&quot;</div></pre></td></tr></table></figure></p>
+<p>修改各自文件夹的index.md，type: “{page.name}”,完事</p>
+<h2 id="搜索-rss-sitemap"><a href="#搜索-rss-sitemap" class="headerlink" title="搜索,rss,sitemap"></a>搜索,rss,sitemap</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">npm install hexo-renderer-ejs --save</div><div class="line">npm install hexo-renderer-less --save</div><div class="line">npm install hexo-deployer-git --save</div><div class="line">npm install hexo-generator-search --save</div><div class="line">npm install hexo-asset-image --save</div><div class="line">npm install hexo-generator-feed --save</div><div class="line">npm install hexo-generator-sitemap --save</div></pre></td></tr></table></figure>
+<h2 id="图片的使用"><a href="#图片的使用" class="headerlink" title="图片的使用"></a>图片的使用</h2><p>①：主页文件：_config.yml的post_asset_folder:这个选项设置为true<br>②：插件安装：npm install hexo-asset-image –save<br>③：hexo n “{article.name}”,编写md文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">![replace world](&#123;article.name&#125;/&#123;png.name&#125;.png)</div></pre></td></tr></table></figure></p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
+<li>发布：hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</li>
+<li>本地：hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</li>
+<li>新建：hexo n “title”</li>
+</ul>
+
+    </div>
+
+    <div class="post-footer">
+        <div class="col-sm-10">
+            <div>
+                <b>本文链接</b>：<a href="/2017/10/10/hexo-github本博客的搭建过程/">hexo+github本博客的搭建过程</a>
+            </div>
+            <div>
+                
+                    <b>转载声明</b>：本博客由刘吉创作，采用 <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank"> CC BY 3.0 CN </a> 许可协议。可自由转载、引用，但需署名作者且注明文章出处。如转载至微信公众号，请在文末添加作者公众号二维码。
+                
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <img src="/icons/wx.jpg" width=100% />
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2017/10/15/Atlas性能监控使用/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+    
+    
+</div>
+
+
+    <div id="comments">
+        
+    <script type="text/javascript" src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+        id: window.location.pathname,
+        owner:"liuji789",
+        repo:"liuji789.github.io",
+        oauth: {
+          client_id:"a2e7f71c376887711893",
+          client_secret:"7675652bc6db8f163d5189e470f5ade692749b5a"
+        },
+        perPage:"10",
+    });
+    gitment.render('comments');
+    </script>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget notification">
+        <h3 class="title">公告</h3>
+        <div>
+            <p>
+  <b>笔者邮箱</b>：583115762@qq.com，欢迎联系<br/>
+  <b>公众号</b>：请扫描我的头像<br/>
+  <b>提示：</b>其实，真正有质量的博客不太多，不如先看看官网文档和github的issue?<br/>
+  <b>本站主题</b>：<a href="http://github.com/itmuch/hexo-theme-itmuch">下载</a>
+</p>
+        </div>
+    </div>
+
+        
+        
+        <div class="widget">
+            <div class="about-me">
+                <img src="/icons/wx.jpg" alt="just do IT">
+                <h2>刘吉</h2>
+                <p>《Think In Java》《Effactive Java》的 阅读者<br/></p>
+            </div>
+        </div>
+
+
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/liuji789" rel="external nofollow" title="GitHub" target="_blank">
+			    	<i class="github fa fa-github"></i>
+			    </a>
+            
+	            <a href="//gitee.com/liuji01" rel="external nofollow" title="Git@OSC" target="_blank">
+			    	<i class="git fa fa-git"></i>
+			    </a>
+            
+	            <a href="mailto:583115762@qq.com" rel="external nofollow" title="邮箱" target="_blank">
+			    	<i class="envelope-o fa fa-envelope-o"></i>
+			    </a>
+            
+	            <a href="/atom.xml" rel="external nofollow" title="RSS" target="_blank">
+			    	<i class="feed fa fa-feed"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/"><i class="fa" aria-hidden="true">Spring Boot</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Cloud/"><i class="fa" aria-hidden="true">Spring Cloud</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">2</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/"><i class="fa" aria-hidden="true">十二月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/"><i class="fa" aria-hidden="true">十一月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/"><i class="fa" aria-hidden="true">十月 2017</i></a><span class="archive-list-count">3</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/Spring-Boot/" style="font-size: 10px;">Spring Boot</a> <a href="/tags/Spring-Cloud/" style="font-size: 20px;">Spring Cloud</a> <a href="/tags/工具/" style="font-size: 20px;">工具</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友情链接</h3>
+        <div class="content friends-link">
+        
+            <a href="http://www.itmuch.com/" class="fa" target="_blank">Spring Cloud</a>
+        
+            <a href="https://www.feel88.cn/" class="fa" target="_blank">大数据</a>
+        
+            <a href="http://blog.didispace.com/" class="fa" target="_blank">程序猿DD|翟永超</a>
+        
+            <a href="http://www.bysocket.com/" class="fa" target="_blank">泥瓦匠的博客</a>
+        
+            <a href="https://pfanz.github.io/" class="fa" target="_blank">寝室长的博客</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2016
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/itmuch/hexo-theme-itmuch.git" class="copyright-links" target="_blank" rel="nofollow">ITMuch</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <script src="/assets/highlight.pack.js?rev=@@hash"></script>
+  <script>
+    hljs.initHighlightingOnLoad(); //初始化代码高亮 
+  </script>
+
+<script src="/js/app.js?rev=@@hash"></script>
+<script src="/lib/jquery/index.js?rev=2.1.3"></script>
+
+    
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    var $doc = window.document;
+    var $input1 =$doc.getElementById("local-search-input");
+    var $resultContent1 = $doc.getElementById('local-search-result');
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('body');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input =document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+          //  var $input =$input1;
+            //var $resultContent = $resultContent1;
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+</body>
+</html>
