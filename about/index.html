@@ -145,7 +145,20 @@ Java开发工程师，帝都的小码农
 	
     <div id="comments">
         
-   <p>评论系统未开启，无法评论！</p>
+    <script type="text/javascript" src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+        id: window.location.pathname,
+        owner:"liuji789",
+        repo:"liuji789.github.io",
+        oauth: {
+          client_id:"a2e7f71c376887711893",
+          client_secret:"7675652bc6db8f163d5189e470f5ade692749b5a"
+        },
+        perPage:"10",
+    });
+    gitment.render('comments');
+    </script>
 
 
 
