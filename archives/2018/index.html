@@ -11,10 +11,10 @@
     <meta name="format-detection" content="telephone=no,email=no">
     <!--SEO-->
 
-    <meta name="keywords" content="工具," />
+    <meta name="keywords" content="" />
 
 
-    <meta name="description" content="hexo+github本博客的搭建过程二话不说就是官网文档：https://hexo.io/zh-cn/docs/ 有中文版，哈哈个人感觉的Maven的生命周期和插件有点像nodejs淘宝的nmp镜像：https://npm.taobao.org/或者直接：npm config set reg..." />
+    <meta name="description" content="blog" />
 
 
 <meta name="robots" content="all" />
@@ -24,7 +24,7 @@
     <!--Title-->
 
 
-<title>hexo+github本博客的搭建过程 | just do IT</title>
+<title>归档：2018 | just do IT</title>
 
 
     <link rel="alternate" href="/atom.xml" title="just do IT" type="application/atom+xml">
@@ -38,8 +38,6 @@
     <link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
 
 
-
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css?rev=9.12.0">
 
 
 <link rel="stylesheet" href="/css/third-party/bootstrap.min.css?rev=3.3.4">
@@ -132,137 +130,31 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content m-post">
-                    <p id="process"></p>
-<article class="post">
-    <div class="post-head">
-        <h1 id="hexo+github本博客的搭建过程">
-            
-            hexo+github本博客的搭建过程
-            
-        </h1>
-        <div class="post-meta">
-    
-    
-    <span class="categories-meta fa-wrap">
-        <i class="fa fa-folder-open-o"></i>
-        <span>工具</span>
-    </span>
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-tags"></i>
-        <span class="tags-meta">
-            
-            工具
-            
-        </span>
-    </span>
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-clock-o"></i>
-        <span class="date-meta">2017/10/10</span>
-    </span>
-</div>
+                <main class="col-md-8 main-content ">
+                    <div id="main">
 
-            
-            
-    </div>
-    
-    <div class="post-body">
-        <h1 id="hexo-github本博客的搭建过程"><a href="#hexo-github本博客的搭建过程" class="headerlink" title="hexo+github本博客的搭建过程"></a>hexo+github本博客的搭建过程</h1><p>二话不说就是官网文档：<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">https://hexo.io/zh-cn/docs/</a> 有中文版，哈哈<br>个人感觉的Maven的生命周期和插件有点像<br>nodejs淘宝的nmp镜像：<a href="https://npm.taobao.org/" target="_blank" rel="external">https://npm.taobao.org/</a><br>或者直接：npm config set registry <a href="https://registry.npm.taobao.org/" target="_blank" rel="external">https://registry.npm.taobao.org/</a> </p>
-<h2 id="基本搭建"><a href="#基本搭建" class="headerlink" title="基本搭建"></a>基本搭建</h2><p>①：配好自己的github<br>②：创建一个自己username相同的仓库<br>③：官网的git方式部署：<a href="https://hexo.io/zh-cn/docs/deployment.html" target="_blank" rel="external">https://hexo.io/zh-cn/docs/deployment.html</a></p>
-<h2 id="目录梳理"><a href="#目录梳理" class="headerlink" title="目录梳理"></a>目录梳理</h2><p><img src="/2017/10/10/hexo-github本博客的搭建过程/1.jpg" alt="目录梳理"></p>
-<h2 id="导航栏使用"><a href="#导航栏使用" class="headerlink" title="导航栏使用"></a>导航栏使用</h2><p>分类，关于，标签等使用方式相同<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo new page &quot;categories&quot;</div><div class="line">hexo new page &quot;tags&quot;</div><div class="line">hexo new page &quot;about&quot;</div></pre></td></tr></table></figure></p>
-<p>修改各自文件夹的index.md，type: “{page.name}”,完事</p>
-<h2 id="搜索-rss-sitemap"><a href="#搜索-rss-sitemap" class="headerlink" title="搜索,rss,sitemap"></a>搜索,rss,sitemap</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">npm install hexo-renderer-ejs --save</div><div class="line">npm install hexo-renderer-less --save</div><div class="line">npm install hexo-deployer-git --save</div><div class="line">npm install hexo-generator-search --save</div><div class="line">npm install hexo-asset-image --save</div><div class="line">npm install hexo-generator-feed --save</div><div class="line">npm install hexo-generator-sitemap --save</div></pre></td></tr></table></figure>
-<h2 id="图片的使用"><a href="#图片的使用" class="headerlink" title="图片的使用"></a>图片的使用</h2><p>①：主页文件：_config.yml的post_asset_folder:这个选项设置为true<br>②：插件安装：npm install hexo-asset-image –save<br>③：hexo n “{article.name}”,编写md文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">![replace world](&#123;article.name&#125;/&#123;png.name&#125;.png)</div></pre></td></tr></table></figure></p>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
-<li>发布：hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</li>
-<li>本地：hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</li>
-<li>新建：hexo n “title”</li>
-</ul>
-
-    </div>
-	 <div class="post-reward">
+    <div id="post-list">
+    <ul class="archives-post-list">
         
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-    <div>欣赏此文？求鼓励，求支持！</div>
-    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-      <span>赏</span>
-    </button>
-    <div id="QR" style="display: none;">
-      
-        <div id="wechat" style="display: inline-block">
-          <img id="wechat_qr" src="/img/weixin.png" alt="liuji WeChat Pay"/>
-          <p>微信打赏</p>
-        </div>
-      
-      
-        <div id="alipay" style="display: inline-block">
-          <img id="alipay_qr" src="/img/alipay.jpg" alt="liuji Alipay"/>
-          <p>支付宝打赏</p>
-        </div>
-      
-    </div>
+            
+            
+
+            
+            
+            
+            <h1 class="info">2018年</h1>
+            
+            <li class="post-items" _href="/2018/02/27/docker中使用oracle的坑！/">
+                <h3 class="post-item-title">
+                    <a href="/2018/02/27/docker中使用oracle的坑！/">02-27 docker中使用oracle的坑！ </a>
+                </h3>
+            </li>
+            
+        
+
+    </ul>
   </div>
-
-
-    </div>
-	<center>
-		<div class="social-share"><b>分享至</b>：</div>
-	</center>
-    <div class="post-footer">
-        <div class="col-sm-10">
-            <div>
-                <b>本文链接</b>：<a href="/2017/10/10/hexo-github本博客的搭建过程/">hexo+github本博客的搭建过程</a>
-            </div>
-            <div>
-                
-                    <b>转载声明</b>：本博客由刘吉创作，采用 <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank"> CC BY 3.0 CN </a> 许可协议。可自由转载、引用，但需署名作者且注明文章出处。如转载至微信公众号，请在文末添加作者公众号二维码。
-                
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <img src="/icons/wx.jpg" width=100% />
-        </div>
-    </div>
-</article>
-
-<div class="article-nav prev-next-wrap clearfix">
-    
-        <a href="/2017/10/15/Atlas性能监控使用/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
-    
-    
 </div>
-
-
-    <div id="comments">
-        
-    <script type="text/javascript" src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-    <script>
-    var gitment = new Gitment({
-        id: window.location.pathname,
-        owner:"liuji789",
-        repo:"liuji789.github.io",
-        oauth: {
-          client_id:"a2e7f71c376887711893",
-          client_secret:"7675652bc6db8f163d5189e470f5ade692749b5a"
-        },
-        perPage:"10",
-    });
-    gitment.render('comments');
-    </script>
-
-
-
-
-
-
-
-
-    </div>
 
 
 
@@ -404,11 +296,6 @@
         </div>
     </div>
 </div>
-
-  <script src="/assets/highlight.pack.js?rev=@@hash"></script>
-  <script>
-    hljs.initHighlightingOnLoad(); //初始化代码高亮 
-  </script>
 
 <script src="/js/app.js?rev=@@hash"></script>
 <script src="/js/qrcode.js?rev=@@hash"></script>
